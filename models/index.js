@@ -5,3 +5,4 @@ const config = require('../config');
 mongoose.connect(config.mongoURI);
 
 require('./photos');
+require('./googleSearches');

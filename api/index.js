@@ -5,6 +5,7 @@ const fallback = require('./fallback');
 module.exports = router;
 
 router.use('/photos', require('./photos'));
+router.use('/googleSearches', require('./googleSearches'));
 // if we don't have a specail route defined, see if we can just catch the data
 router.use(fallback);
 
