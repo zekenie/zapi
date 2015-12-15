@@ -37,7 +37,7 @@ router.post('/',
   },
 
   (req, res, next) => {
-    req.filePath = `${process.cwd()}/files/${req.doc.id}`;
+    req.filePath = `${process.cwd()}/files/${req.doc.id}.jpg`;
     fs.writeFile(req.filePath, req.file.buffer, function(err) {
       if(err) { next(err); }
       next();
