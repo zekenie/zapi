@@ -50,7 +50,9 @@ router.post('/',
         console.error('error generating ocr from Scanr');
         return next();
       }
+      console.log('ocr text is ', text);
       req.doc.ocr = text;
+      req.doc.markModified('ocr');
       next();
     });
   },

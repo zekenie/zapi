@@ -11,7 +11,6 @@ module.exports = {
   },
   getCollections: function() {
     return new Promise( (resolve, reject) => {
-      console.log(Object.keys(db.prototype));
       db.collectionNames(function(err, names) {
         if(err) { return reject(err); }
         resolve(names);
