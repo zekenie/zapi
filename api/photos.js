@@ -4,7 +4,8 @@ const express = require('express');
 const Exif = require('fixed-node-exif').ExifImage;
 const router = express.Router();
 const multer = require('multer');
-const uuid = require('uuid');
+const config = require('../config');
+const scanr = require('scanr')(config.scanr);
 module.exports = router;
 
 const model = require('../models/photos');
@@ -31,22 +32,34 @@ router.post('/',
 
   (req, res, next) => {
     req.body.exif = req.exif;
-    model.create(req.body)
-      .then(function(doc) {
-        req.doc = doc;
-        next();
-      })
-      .catch(next);
+    req.doc = new model(req.body);
+    next();
   },
 
   (req, res, next) => {
-    fs.writeFile(`${process.cwd()}/files/${uuid.v4()}`, req.file.buffer, function(err) {
+    req.filePath = `${process.cwd()}/files/${req.doc.id}`;
+    fs.writeFile(req.filePath, req.file.buffer, function(err) {
       if(err) { next(err); }
-      try{
-        res.status(201).json(req.doc);
-      } catch(e) {
-        next(e);
-      }
+      next();
     });
+  },
+
+  (req, res, next) => {
+    scanr.ocr(req.filePath, (err, text) => {
+      if(err) {
+        console.error('error generating ocr from Scanr');
+        return next();
+      }
+      req.doc.ocr = text;
+      next();
+    });
+  },
+
+  (req, res, next) => {
+    req.doc.save()
+      .then(function(doc) {
+        res.status(201).json(doc);
+      })
+      .catch(next);
   }
 );
