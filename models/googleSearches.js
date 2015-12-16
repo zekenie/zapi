@@ -10,7 +10,10 @@ const GoogleSearchSchema = new mongoose.Schema({
 });
 
 GoogleSearchSchema.statics.processGoogleEvent = function(evt) {
-  return Promise.map(evt.query.id, timeStampObj => this.create({ queryText: evt.query.query_text, __date: timeStampObj.timestamp_usec }) );
+  return Promise.map(evt.query.id, timeStampObj => {
+    timeStampObj.timestamp_usec = timeStampObj.timestamp_usec.substr(0,10);
+    return this.create({ queryText: evt.query.query_text, __date: timeStampObj.timestamp_usec }) 
+  });
 };
 
 GoogleSearchSchema.statics.processGoogleEvents = function(events) {
