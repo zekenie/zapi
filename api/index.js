@@ -7,7 +7,7 @@ module.exports = router;
 
 router.use('/photos', require('./photos'));
 
-router.use(bodyParser.json());
+router.use(bodyParser.json({ limit: '300kb' }));
 
 router.use('/googleSearches', require('./googleSearches'));
 // if we don't have a specail route defined, see if we can just catch the data
