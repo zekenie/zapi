@@ -3,7 +3,7 @@
 const args = process.argv.slice(2);
 const fs = require('fs');
 const path = require('path');
-const request = require();
+const request = require('sync-request');
 
 
 const dir = args[0];
@@ -16,7 +16,7 @@ var responses = fs.readdirSync(dir)
   .map( month => month.event )
   .map( queryArray => {
     console.log('making request for', queryArray);
-    return request('POST', 'https://api.codetutor.me/googleSearches', {json: queryArray}).getBody('utf8');
+    return request('POST', 'https://api.codetutor.me/googleSearches/bulk', {json: queryArray}).getBody('utf8');
   })
 
 console.log(responses);
