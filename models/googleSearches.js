@@ -11,7 +11,7 @@ const GoogleSearchSchema = new mongoose.Schema({
 
 GoogleSearchSchema.statics.processGoogleEvent = function(evt) {
   return Promise.map(evt.query.id, timeStampObj => {
-    timeStampObj.timestamp_usec = timeStampObj.timestamp_usec.substr(0,10);
+    timeStampObj.timestamp_usec = Number(timeStampObj.timestamp_usec.substr(0,10)) * 1000;
     return this.create({ queryText: evt.query.query_text, __date: timeStampObj.timestamp_usec }) 
   });
 };
