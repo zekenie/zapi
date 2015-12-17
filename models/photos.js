@@ -37,9 +37,8 @@ PhotoSchema.pre('save', function(next) {
   this.calculateChecksum()
     .then( checksum => {
       this.checksum = checksum;
-      return this.save();
+      next();
     })
-    .then( doc => next() )
     .catch(next);
 });
 
