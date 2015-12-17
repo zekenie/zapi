@@ -20,7 +20,7 @@ PhotoSchema.methods.getFile = function() {
 };
 
 PhotoSchema.methods.getFileStream = function() {
-  return fs.createReadStrem(this.filepath);
+  return fs.createReadStream(this.filepath);
 };
 
 PhotoSchema.methods.calculateChecksum = function() {
