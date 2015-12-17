@@ -5,7 +5,6 @@ const Exif = require('fixed-node-exif').ExifImage;
 const router = express.Router();
 const multer = require('multer');
 const config = require('../config');
-const scanr = require('scanr')(config.scanr);
 module.exports = router;
 
 const model = require('../models/photos');
@@ -40,19 +39,6 @@ router.post('/',
     req.filePath = `${process.cwd()}/files/${req.doc.id}.jpg`;
     fs.writeFile(req.filePath, req.file.buffer, function(err) {
       if(err) { next(err); }
-      next();
-    });
-  },
-
-  (req, res, next) => {
-    scanr.ocr(req.filePath, (err, text) => {
-      if(err) {
-        console.error('error generating ocr from Scanr');
-        return next();
-      }
-      console.log('ocr text is ', text);
-      req.doc.ocr = text;
-      req.doc.markModified('ocr');
       next();
     });
   },

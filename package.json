@@ -15,12 +15,13 @@
     "chalk": "^1.1.1",
     "express": "^4.13.3",
     "fixed-node-exif": "^0.4.0",
+    "mailparser": "^0.5.3",
     "mongodb": "^2.1.0",
     "mongodb-rest": "^0.10.14",
     "mongoose": "^4.3.1",
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
-    "scanr": "0.0.4",
+    "node-mbox": "^0.2.1",
     "sync-request": "^2.1.0"
   }
 }

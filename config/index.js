@@ -3,7 +3,6 @@ const fs = require('fs');
 module.exports = {
   mongoURI: 'mongodb://localhost/zeke-data',
   port: process.env.PORT || 8999,
-  scanr: process.env.SCANR || 'garbage value',
   password: process.env.HTTP_PASSWORD || 'foobar',
   https: {
     key: fs.readFileSync(process.env.PRIVATE_KEY || `${process.cwd()}/devKeys/key.pem`, 'utf8'),
