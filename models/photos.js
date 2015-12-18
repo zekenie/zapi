@@ -37,6 +37,14 @@ PhotoSchema.pre('save', function(next) {
   this.calculateChecksum()
     .then( checksum => {
       this.checksum = checksum;
+
+      return this;
+    })
+    .then( doc => {
+      return mongoose.model('Photo').count({ checksum: doc.checksum });
+    })
+    .then( otherDocsCount => {
+      if(otherDocsCount !== 0) { throw new Error('Photo with same checksum found'); }
       next();
     })
     .catch(next);
