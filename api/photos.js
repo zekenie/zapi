@@ -4,7 +4,6 @@ const express = require('express');
 const Exif = require('fixed-node-exif').ExifImage;
 const router = express.Router();
 const multer = require('multer');
-const config = require('../config');
 module.exports = router;
 
 const model = require('../models/photos');
@@ -47,6 +46,16 @@ router.post('/',
     req.doc.save()
       .then(function(doc) {
         res.status(201).json(doc);
+      })
+      .catch(next);
+  },
+
+  // if there was an error thrown in upload, delete the file
+  (err, req, res, next) => {
+    req.doc.deleteFile()
+      .then(function() {
+        console.log(`successfully deleted #{doc.id}.jpg.`);
+        next(err);
       })
       .catch(next);
   }

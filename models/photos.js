@@ -23,6 +23,10 @@ PhotoSchema.methods.getFileStream = function() {
   return fs.createReadStream(this.filepath);
 };
 
+PhotoSchema.methods.deleteFile = function() {
+  return fs.unlinkAsync(this.filepath)
+};
+
 PhotoSchema.methods.calculateChecksum = function() {
   const stream = this.getFileStream();
   const hash = crypto.createHash('md5');
