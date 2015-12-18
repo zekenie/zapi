@@ -54,7 +54,7 @@ router.post('/',
   (err, req, res, next) => {
     req.doc.deleteFile()
       .then(function() {
-        console.log(`successfully deleted #{doc.id}.jpg.`);
+        console.log(`successfully deleted ${doc.id}.jpg.`);
         next(err);
       })
       .catch(next);
