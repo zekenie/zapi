@@ -45,18 +45,18 @@ module.exports = function(schema, options) {
   }
 
   schema.methods.getFile = function() {
-    return fs.readFileAsync(this.filepath);
+    return fs.readFileAsync(this.filePath);
   };
 
   schema.methods.getFileStream = function() {
-    return fs.createReadStream(this.filepath);
+    return fs.createReadStream(this.filePath);
   };
 
   schema.methods.deleteFile = function() {
-    return fs.unlinkAsync(this.filepath)
+    return fs.unlinkAsync(this.filePath)
   };
 
-  schema.virtual('filepath').get(function() {
+  schema.virtual('filePath').get(function() {
     return path.join(process.cwd(), 'files', this.collection.name, this.id + options.filetype);
   });
 }
