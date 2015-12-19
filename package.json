@@ -15,6 +15,7 @@
     "chalk": "^1.1.1",
     "express": "^4.13.3",
     "fixed-node-exif": "^0.4.0",
+    "lodash": "^3.10.1",
     "mailparser": "^0.5.3",
     "mongodb": "^2.1.0",
     "mongodb-rest": "^0.10.14",
