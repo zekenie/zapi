@@ -13,7 +13,7 @@ module.exports = function(schema, options) {
   }, options);
 
   if(options.checksum) {
-    schema.add({ checksum: String, index: true });
+    schema.add({ checksum: { type: String, index: true } });
 
     schema.methods.calculateChecksum = function() {
       return new Promise( (resolve, reject) => {
