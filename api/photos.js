@@ -52,11 +52,13 @@ router.post('/',
 
   // if there was an error thrown in upload, delete the file
   (err, req, res, next) => {
-    req.doc.deleteFile()
-      .then(function() {
-        console.log(`successfully deleted ${req.doc.id}.jpg.`);
-        next(err);
-      })
-      .catch(next);
+    if(req.doc) {
+      req.doc.deleteFile()
+        .then(function() {
+          console.log(`successfully deleted ${req.doc.id}.jpg.`);
+          next(err);
+        })
+        .catch(next);
+    } else { next(err); }
   }
 );
