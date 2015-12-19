@@ -6,3 +6,4 @@ mongoose.connect(config.mongoURI);
 
 require('./photos');
 require('./googleSearches');
+require('./screenshots');

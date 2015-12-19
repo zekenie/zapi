@@ -1,5 +1,6 @@
 'use strict';
-const fs = require('fs');
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs'));
 const express = require('express');
 const Exif = require('fixed-node-exif').ExifImage;
 const router = express.Router();
@@ -35,11 +36,9 @@ router.post('/',
   },
 
   (req, res, next) => {
-    req.filePath = req.doc.filepath
-    fs.writeFile(req.filePath, req.file.buffer, function(err) {
-      if(err) { next(err); }
-      next();
-    });
+    fs.writeFileAsync(req.doc.filePath, req.file.buffer)
+      .then( () => next() )
+      .catch(next);
   },
 
   (req, res, next) => {
@@ -55,7 +54,7 @@ router.post('/',
     if(req.doc) {
       req.doc.deleteFile()
         .then(function() {
-          console.log(`successfully deleted ${req.doc.id}.jpg.`);
+          console.log(`successfully deleted ${req.doc.filePath}`);
           next(err);
         })
         .catch(next);
