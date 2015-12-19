@@ -5,6 +5,8 @@ const fs = Promise.promisifyAll(require('fs'));
 const multer = require('multer');
 const router = express.Router();
 
+module.exports = router;
+
 const model = require('../models/screenshots');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
