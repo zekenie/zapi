@@ -51,6 +51,8 @@ router.post('/',
 
   // if there was an error thrown in upload, delete the file
   (err, req, res, next) => {
+    console.log(err);
+    console.log(err.stack);
     if(req.doc) {
       req.doc.deleteFile()
         .then(function() {
