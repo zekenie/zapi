@@ -35,7 +35,7 @@ router.post('/',
   },
 
   (req, res, next) => {
-    req.filePath = doc.filepath
+    req.filePath = req.doc.filepath
     fs.writeFile(req.filePath, req.file.buffer, function(err) {
       if(err) { next(err); }
       next();
