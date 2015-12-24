@@ -1,5 +1,5 @@
 'use strict';
-const JobRun = require('../../models/jobRuns');
+const JobRun = require('../models/jobRuns');
 const _ = require('lodash');
 const JobTouch = require('../models/jobTouches');
 
@@ -7,7 +7,7 @@ class Job {
   constructor(query) {
     this.GROUP = 'overwrite';
     this.TITLE = 'overwrite';
-    this.COLLECTION = 'overwrite';
+    this.TABLE = 'overwrite';
     this.query = query;
   }
 
@@ -16,7 +16,7 @@ class Job {
       .find({
         group: this.GROUP,
         title: this.TITLE,
-        collection: this.COLLECTION
+        table: this.TABLE
       })
       .then( touches => touches.map( touch => touch.reference ) );
   }
@@ -50,7 +50,7 @@ class Job {
         title: this.TITLE,
         group: this.GROUP,
         run: this.run,
-        collection: this.COLLECTION, 
+        table: this.TABLE, 
         reference: record._id
       }));
     })

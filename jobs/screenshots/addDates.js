@@ -9,7 +9,7 @@ class AddDateJob extends Job {
     super(query);
     this.GROUP = 'screenshots';
     this.TITLE = 'addDates';
-    this.COLLECTION = 'Screenshot';
+    this.TABLE = 'Screenshot';
   }
 
   find() {

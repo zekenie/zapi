@@ -8,9 +8,9 @@ const mongoose = require('mongoose');
 const JobTouchSchema = new mongoose.Schema({
   group: { type: String, index: true },
   title: { type: String, required: true, index: true },
-  run: { type: mongoose.Types.ObjectId, ref: 'JobRun', required: true },
-  collection: { type: String, required: true, index: true },
-  reference: { type: mongoose.Types.ObjectId, required: true }
+  run: { type: mongoose.Schema.Types.ObjectId, ref: 'JobRun', required: true },
+  table: { type: String, required: true, index: true },
+  reference: { type: mongoose.Schema.Types.ObjectId, required: true }
 }, {
   timestamps: true
 });
