@@ -4,6 +4,10 @@ mongoose.Promise = require('bluebird');
 const config = require('../config');
 mongoose.connect(config.mongoURI);
 
-require('./photos');
-require('./googleSearches');
-require('./screenshots');
+module.exports = {
+  Photo: require('./photos'),
+  GoogleSearche: require('./googleSearches'),
+  Screenshot: require('./screenshots'),
+  JobRun: require('./jobRuns'),
+  JobTouche: require('./jobTouches')
+};
