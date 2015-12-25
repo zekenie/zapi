@@ -1,7 +1,10 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const ScreenshotSchema = new mongoose.Schema({}, {
+const ScreenshotSchema = new mongoose.Schema({
+  __date: Date,
+  dateApproximate: Boolean
+}, {
   strict: false,
   timestamps: true
 });
