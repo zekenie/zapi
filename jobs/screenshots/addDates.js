@@ -28,6 +28,7 @@ class AddDateJob extends Job {
       record.__date = record._id.getTimestamp();
       record.dateApproximate = true;
     }
+    record.markModified('__date');
     return record.save();
   }
 }
