@@ -25,6 +25,7 @@ class AddDateJob extends Job {
         .replace('.png','')
         .replace(/\./g, ':');
       record.set('__date', new Date(dateStr));
+      record.set('dateApproximate', false);
     } else {
       record.set('__date', record._id.getTimestamp());
       record.set('dateApproximate', true);
