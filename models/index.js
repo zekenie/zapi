@@ -9,5 +9,5 @@ module.exports = {
   GoogleSearch: require('./googleSearches'),
   Screenshot: require('./screenshots'),
   JobRun: require('./jobRuns'),
-  JobTouche: require('./jobTouches')
+  JobTouch: require('./jobTouches')
 };
