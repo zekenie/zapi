@@ -31,7 +31,7 @@ class Job {
   }
 
   run() {
-    console.log('Starting', this.contrustor.name);
+    console.log('Starting', this.constructor.name);
     return JobRun.create({
       group: this.GROUP,
       title: this.TITLE
