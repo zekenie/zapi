@@ -19,7 +19,7 @@ class AddDateJob extends Job {
 
   processRecord(record) {
     if(record.filename) {
-      const dateStr = record.filename.filename
+      const dateStr = record.filename
         .replace('Screen Shot ','')
         .replace(' at ', ' ')
         .replace('.png','')
