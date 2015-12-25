@@ -31,6 +31,7 @@ class Job {
   }
 
   run() {
+    console.log('Starting', this.contrustor.name);
     return JobRun.create({
       group: this.GROUP,
       title: this.TITLE
@@ -44,6 +45,7 @@ class Job {
       return this.find();
     })
     .then( records => {
+      console.log('found', records.length, 'docs to process');
       return Promise.map(records, record => this.processRecord(record) );
     })
     .then( records => {

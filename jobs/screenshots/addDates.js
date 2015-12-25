@@ -13,6 +13,7 @@ class AddDateJob extends Job {
   }
 
   find() {
+    console.log('querying docs to update', this.query);
     return model.find(this.query);
   }
 
@@ -28,7 +29,6 @@ class AddDateJob extends Job {
       record.set('__date', record._id.getTimestamp());
       record.set('dateApproximate', true);
     }
-    console.log('presave', record.__date);
     record.markModified('__date');
     return record.save();
   }

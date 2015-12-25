@@ -3,7 +3,8 @@
 const mongoose = require('mongoose');
 const ScreenshotSchema = new mongoose.Schema({
   __date: Date,
-  dateApproximate: Boolean
+  dateApproximate: Boolean,
+  filename: String
 }, {
   strict: false,
   timestamps: true
