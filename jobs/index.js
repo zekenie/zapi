@@ -11,5 +11,7 @@ agenda.define('grab dates from screenshots', function() {
 });
 
 agenda.on('ready', function() {
+  console.log('job system ready');
   agenda.every('3 minutes', 'grab dates from screenshots');
+  agenda.start();
 });
