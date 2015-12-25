@@ -23,10 +23,10 @@ class AddDateJob extends Job {
         .replace(' at ', ' ')
         .replace('.png','')
         .replace(/\./g, ':');
-      record.__date = new Date(dateStr);
+      record.set('__date', new Date(dateStr));
     } else {
-      record.__date = record._id.getTimestamp();
-      record.dateApproximate = true;
+      record.set('__date', record._id.getTimestamp());
+      record.set('dateApproximate', true);
     }
     console.log('presave', record.__date);
     record.markModified('__date');
