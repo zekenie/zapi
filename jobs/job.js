@@ -1,6 +1,7 @@
 'use strict';
 const JobRun = require('../models/jobRuns');
 const _ = require('lodash');
+const Promise = require('bluebird');
 const JobTouch = require('../models/jobTouches');
 
 class Job {
