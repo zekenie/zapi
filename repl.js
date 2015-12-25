@@ -13,4 +13,7 @@ promisify(replServer);
 
 for(var key in models) {
   replServer.context[key] = models[key];
+  replServer.context.jobs = {
+    AddDateJob: require('./jobs/screenshots/addDates')
+  };
 }

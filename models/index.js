@@ -6,7 +6,7 @@ mongoose.connect(config.mongoURI);
 
 module.exports = {
   Photo: require('./photos'),
-  GoogleSearche: require('./googleSearches'),
+  GoogleSearch: require('./googleSearches'),
   Screenshot: require('./screenshots'),
   JobRun: require('./jobRuns'),
   JobTouche: require('./jobTouches')
