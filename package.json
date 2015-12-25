@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "agenda": "^0.7.5",
     "axios": "^0.8.1",
     "bluebird": "^3.0.6",
     "body-parser": "^1.14.1",

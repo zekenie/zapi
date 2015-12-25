@@ -1,0 +1,20 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [
+
+    // First application
+    {
+      name      : "API",
+      script    : "server.js",
+    },
+
+    // Second application
+    {
+      name      : "WORKER",
+      script    : "jobs/index.js"
+    }
+  ]
+}

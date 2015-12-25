@@ -2,6 +2,7 @@
 const fs = require('fs');
 module.exports = {
   mongoURI: 'mongodb://localhost/zeke-data',
+  jobsDb: 'mongodb://localhost/job-queue',
   port: process.env.PORT || 8999,
   password: process.env.HTTP_PASSWORD || 'foobar',
   https: {
