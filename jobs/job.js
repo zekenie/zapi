@@ -9,7 +9,7 @@ class Job {
     this.GROUP = 'overwrite';
     this.TITLE = 'overwrite';
     this.TABLE = 'overwrite';
-    this.query = query;
+    this.query = query || {};
   }
 
   findPreviousIDs() {
