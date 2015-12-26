@@ -7,12 +7,12 @@ const agenda = new Agenda({ db: { address: config.jobsDb } });
 const AddDatesToScreenshots = require('./screenshots/addDates');
 const ExifJob = require('./photos/exif');
 
-agenda.define('grab dates from screenshots', function(done) {
+agenda.define('grab dates from screenshots', function(job, done) {
   new AddDatesToScreenshots().run()
     .then( () => done(), done);
 });
 
-agenda.define('pull exif from photos', function(done) {
+agenda.define('pull exif from photos', function(job, done) {
   new ExifJob().run()
     .then( () => done(), done);
 });
