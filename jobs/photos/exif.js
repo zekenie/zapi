@@ -1,0 +1,37 @@
+'use strict';
+
+const model = require('../../models/screenshots');
+const Job = require('../job');
+const Exif = require('fixed-node-exif').ExifImage;
+
+class ExifJob extends Job {
+
+  constructor(query) {
+    super(query);
+    this.GROUP = 'photos';
+    this.TITLE = 'exif';
+    this.TABLE = 'Photo';
+  }
+
+  find() {
+    console.log('querying docs to update', this.query);
+    return model.find(this.query);
+  }
+
+  processRecord(record) {
+    if(record.exif) { return Promise.resolve(record); }
+    return new Promise( (resolve, reject) => {
+      new Exif({ image: record.filePath }, function(err, data) {
+        if(err) { return reject(err); }
+        resolve(data);
+      });
+    })
+    .then( exif => {
+      record.set('exif', exif);
+      record.markModified('exif');
+      return record.save();
+    });
+  }
+}
+
+module.exports = ExifJob;

@@ -16,26 +16,8 @@ const upload = multer({ storage });
 router.post('/',
   upload.single('photo'),
 
-  // get exif data
   (req, res, next) => {
-    try {
-      new Exif({ image: req.file.buffer }, function(err, data) {
-        if(err) { return next(err); }
-        req.exif = data;
-        next();
-      });
-    } catch (e) {
-      next(e);
-    }
-  },
-
-  (req, res, next) => {
-    req.body.exif = req.exif;
     req.doc = new model(req.body);
-    next();
-  },
-
-  (req, res, next) => {
     fs.writeFileAsync(req.doc.filePath, req.file.buffer)
       .then( () => next() )
       .catch(next);
