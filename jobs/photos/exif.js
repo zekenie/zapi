@@ -22,7 +22,9 @@ class ExifJob extends Job {
   processRecord(record) {
     if(record.exif) { return Promise.resolve(record); }
     return new Promise( (resolve, reject) => {
-      new Exif({ image: fs.readFileSync(record.filePath) }, function(err, data) {
+      var buffer = fs.readFileSync(record.filePath);
+      if(!buffer) { return resolve(); }
+      new Exif({ image: buffer }, function(err, data) {
         if(err) { return reject(err); }
         resolve(data);
       });
