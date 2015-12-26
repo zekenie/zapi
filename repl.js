@@ -14,6 +14,7 @@ promisify(replServer);
 for(var key in models) {
   replServer.context[key] = models[key];
   replServer.context.jobs = {
-    AddDateJob: require('./jobs/screenshots/addDates')
+    AddDateJob: require('./jobs/screenshots/addDates'),
+    Exif: require('./jobs/photos/exif')
   };
 }
