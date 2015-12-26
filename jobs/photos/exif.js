@@ -3,6 +3,7 @@
 const model = require('../../models/screenshots');
 const Job = require('../job');
 const Exif = require('fixed-node-exif').ExifImage;
+const fs = require('fs');
 
 class ExifJob extends Job {
 
@@ -21,7 +22,7 @@ class ExifJob extends Job {
   processRecord(record) {
     if(record.exif) { return Promise.resolve(record); }
     return new Promise( (resolve, reject) => {
-      new Exif({ image: record.filePath }, function(err, data) {
+      new Exif({ image: fs.readFileSync(record.filePath) }, function(err, data) {
         if(err) { return reject(err); }
         resolve(data);
       });
