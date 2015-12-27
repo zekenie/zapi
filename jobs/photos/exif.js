@@ -25,7 +25,10 @@ class ExifJob extends Job {
       var buffer = fs.readFileSync(record.filePath);
       if(!buffer) { return resolve(); }
       new Exif({ image: buffer }, function(err, data) {
-        if(err) { return reject(err); }
+        if(err) { 
+          console.log('failing record', record);
+          return reject(err);
+        }
         resolve(data);
       });
     })
