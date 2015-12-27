@@ -1,6 +1,6 @@
 'use strict';
 
-const model = require('../../models/screenshots');
+const model = require('../../models/photos');
 const Job = require('../job');
 const Exif = require('fixed-node-exif').ExifImage;
 const fs = require('fs');
