@@ -17,6 +17,7 @@ router.post('/',
   upload.single('photo'),
 
   (req, res, next) => {
+    console.log(req.body);
     req.doc = new model(req.body);
     fs.writeFileAsync(req.doc.filePath, req.file.buffer)
       .then( () => next() )

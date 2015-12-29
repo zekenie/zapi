@@ -5,6 +5,8 @@ const config = require('../config');
 mongoose.connect(config.mongoURI);
 
 module.exports = {
+  Temperature: require('./temperatures'),
+  LightLevel: require('./lightLevels'),
   Photo: require('./photos'),
   GoogleSearch: require('./googleSearches'),
   Screenshot: require('./screenshots'),
