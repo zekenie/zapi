@@ -5,11 +5,11 @@ const fallback = require('./fallback');
 const bodyParser = require('body-parser');
 module.exports = router;
 
+router.use('/photos', require('./photos'));
+router.use('/screenshots', require('./screenshots'));
 router.use(bodyParser.json({ limit: '300kb' }));
 
 router.use('/timeseries', require('./timeseries'));
-router.use('/photos', require('./photos'));
-router.use('/screenshots', require('./screenshots'));
 
 
 router.use('/googleSearches', require('./googleSearches'));
