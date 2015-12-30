@@ -24,11 +24,11 @@ router.post('/bulk', (req, res, next) => {
 router.get('/:dataset', (req, res, next) => {
   const query = {};
   if(req.query.start) {
-    query.__date = { $gte: Date(req.query.start) };
+    query.__date = { $gte: new Date(req.query.start) };
   }
   if(req.query.end) {
     query.__date = query.__date || {};
-    query.__date.$lte = Date(req.query.end);
+    query.__date.$lte = new Date(req.query.end);
   }
   mongoose.model(req.params.dataset).find(query).select('-_id -__v').lean()
     .then( values => res.json(values) )
