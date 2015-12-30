@@ -13,5 +13,5 @@ exports.add = function(schema, collection) {
 };
 
 exports.list = function() {
-  module.exports = _.clone(collections);
+  return _.clone(collections);
 };
