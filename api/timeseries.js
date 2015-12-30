@@ -30,7 +30,7 @@ router.get('/:dataset', (req, res, next) => {
     query.__date = query.__date || {};
     query.__date.$lte = Date(req.query.end);
   }
-  mongoose.model(req.params.dataset).find(query)
+  mongoose.model(req.params.dataset).find(query).select('-_id -__v').lean()
     .then( values => res.json(values) )
     .catch(next);
 });
