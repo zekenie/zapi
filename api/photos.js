@@ -14,7 +14,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.post('/',
-  upload.fields(),
+  upload.single('photo'),
 
   (req, res, next) => {
     console.log(req.body);
