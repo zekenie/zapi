@@ -8,4 +8,4 @@ const TemperatureSchema = new mongoose.Schema({
 });
 
 timeseriesPlugin.add(TemperatureSchema, 'Temperature');
-mongoose.model('Temperature', TemperatureSchema);
+module.exports = mongoose.model('Temperature', TemperatureSchema);

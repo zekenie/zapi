@@ -8,4 +8,4 @@ const LightLevelSchema = new mongoose.Schema({
 });
 
 timeseriesPlugin.add(LightLevelSchema, 'LightLevel');
-mongoose.model('LightLevel', LightLevelSchema);
+module.exports = mongoose.model('LightLevel', LightLevelSchema);
