@@ -10,6 +10,7 @@ router.use(bodyParser.json({ limit: '300kb' }));
 
 router.use('/photos', require('./photos'));
 router.use('/screenshots', require('./screenshots'));
+router.use('/phoneBattery', require('./phoneBatteries'));
 
 router.use('/timeseries', require('./timeseries'));
 

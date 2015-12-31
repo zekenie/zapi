@@ -8,6 +8,7 @@ module.exports = {
   Temperature: require('./temperatures'),
   LightLevel: require('./lightLevels'),
   Photo: require('./photos'),
+  PhoneBattery: require('./phoneBatteries'),
   GoogleSearch: require('./googleSearches'),
   Screenshot: require('./screenshots'),
   JobRun: require('./jobRuns'),
