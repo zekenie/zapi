@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const timeseriesPlugin = require('./timeseriesPlugin');
 
 const PhoneBatteriesSchema = new mongoose.Schema({
-  value: { type: Number, required: true },
+  value: { type: Number },
   isPlugged: Boolean
 });
 
