@@ -14,5 +14,10 @@ PhoneBatteriesSchema.virtual('level').set( v => {
   this.value = v;
 });
 
+PhoneBatteriesSchema.pre('validate', function(next) {
+  if(!this.__date) { this.__date = new Date(); }
+  next();
+});
+
 timeseriesPlugin.add(PhoneBatteriesSchema, 'PhoneBattery');
 module.exports = mongoose.model('PhoneBattery', PhoneBatteriesSchema);
