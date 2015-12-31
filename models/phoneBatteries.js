@@ -5,8 +5,9 @@ const timeseriesPlugin = require('./timeseriesPlugin');
 
 const PhoneBatteriesSchema = new mongoose.Schema({
   value: { type: Number },
-  isPlugged: Boolean
-});
+  isPlugged: Boolean,
+  level: { type: Number }
+}, { strict: false });
 
 
 PhoneBatteriesSchema.pre('validate', function(next) {
