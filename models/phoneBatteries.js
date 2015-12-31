@@ -7,7 +7,7 @@ const PhoneBatteriesSchema = new mongoose.Schema({
   value: { type: Number },
   isPlugged: Boolean,
   level: { type: Number }
-}, { strict: false });
+}, { strict: false, collection: 'phoneBattery'});
 
 
 PhoneBatteriesSchema.pre('validate', function(next) {
