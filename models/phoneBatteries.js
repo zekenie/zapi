@@ -8,11 +8,6 @@ const PhoneBatteriesSchema = new mongoose.Schema({
   isPlugged: Boolean
 });
 
-// need 2 setters, one for 
-// 
-PhoneBatteriesSchema.virtual('level').set( v => {
-  this.value = v;
-});
 
 PhoneBatteriesSchema.pre('validate', function(next) {
   if(!this.__date) { this.__date = new Date(); }
