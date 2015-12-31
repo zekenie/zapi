@@ -16,6 +16,7 @@ PhoneBatteriesSchema.virtual('level').set( v => {
 
 PhoneBatteriesSchema.pre('validate', function(next) {
   if(!this.__date) { this.__date = new Date(); }
+  if(!this.value) { this.value = this.level; }
   next();
 });
 
