@@ -17,7 +17,7 @@ const pullDateFromFilename = function() {
         .replace(/\./g, ':'));
 };
 
-ScreenshotSchema.pre('save', function(next) {
+ScreenshotSchema.pre('validate', function(next) {
   this.set('__date', pullDateFromFilename.call(this));
   next();
 });

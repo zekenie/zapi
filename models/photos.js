@@ -11,7 +11,7 @@ PhotoSchema.methods.inferDate = function() {
   this.set('__date', _.get('this.exif.DateTimeOriginal') || this.createdAt);
 }
 
-PhotoSchema.pre('save', function(next) {
+PhotoSchema.pre('validate', function(next) {
   if(!this.__date) {
     this.inferDate();
   }
