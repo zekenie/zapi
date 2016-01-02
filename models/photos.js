@@ -10,8 +10,9 @@ const PhotoSchema = new mongoose.Schema({}, {
 PhotoSchema.methods.inferDate = function() {
   // this.set('__date', _.get(this.toObject(), 'exif.DateTimeOriginal', this.createdAt));
   let dateStr = this.createdAt;
-  if(this.exif && this.exif.DateTimeOriginal) {
-    dateStr = this.toObject().exif.DateTimeOriginal
+  const obj = this.toObject();
+  if(obj.exif && obj.exif.DateTimeOriginal) {
+    dateStr = obj.exif.DateTimeOriginal
       .replace(':','-')
       .replace(':','-');
   }
