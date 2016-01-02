@@ -8,13 +8,13 @@ const PhotoSchema = new mongoose.Schema({}, {
 });
 
 PhotoSchema.methods.inferDate = function() {
-  this.set('__date', _.get('this.exif.DateTimeOriginal') || this.createdAt);
+  this.set('__date', _.get(this, 'exif.DateTimeOriginal') || this.createdAt);
 }
 
 PhotoSchema.pre('validate', function(next) {
-  if(!this.__date) {
+  // if(!this.__date) {
     this.inferDate();
-  }
+  // }
   next();
 });
 
