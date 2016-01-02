@@ -40,7 +40,7 @@ const plugin = (schema) => {
 
 exports.add = function(schema, collection, klass) {
   schema.plugin(plugin);
-  collections[collection] = klass || mongoose.model('collection');
+  collections[collection] = klass || mongoose.model(collection);
 };
 
 exports.get = function(collection) {
