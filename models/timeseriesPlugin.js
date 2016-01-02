@@ -19,7 +19,10 @@ const composeDateQuery = (start, end) => {
 
 const plugin = (schema) => {
 
-  schema.add({ __date: { type: Date, required: true, index: true } });
+  schema.add({
+    __date: { type: Date, required: true, index: true },
+    dateApproximate: Boolean
+  });
 
   if(!schema.methods.transformer) {
     schema.methods.transformer = function() {

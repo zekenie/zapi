@@ -19,7 +19,7 @@ agenda.define('pull exif from photos', function(job, done) {
 
 agenda.on('ready', function() {
   console.log('job system ready');
-  agenda.every('3 minutes', 'grab dates from screenshots');
+  // agenda.every('3 minutes', 'grab dates from screenshots');
   agenda.every('3 minutes', 'pull exif from photos');
   agenda.start();
 });
