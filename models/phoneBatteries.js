@@ -19,5 +19,5 @@ PhoneBatteriesSchema.pre('validate', function(next) {
   next();
 });
 
-timeseriesPlugin.add(PhoneBatteriesSchema, 'PhoneBattery');
 module.exports = mongoose.model('PhoneBattery', PhoneBatteriesSchema);
+timeseriesPlugin.add(PhoneBatteriesSchema, 'PhoneBattery');
