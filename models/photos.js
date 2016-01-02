@@ -8,8 +8,16 @@ const PhotoSchema = new mongoose.Schema({}, {
 });
 
 PhotoSchema.methods.inferDate = function() {
-  this.set('__date', _.get(this, 'exif.DateTimeOriginal') || this.createdAt);
-}
+  // this.set('__date', _.get(this.toObject(), 'exif.DateTimeOriginal', this.createdAt));
+  let dateStr = this.createdAt;
+  if(this.exif && this.exif.DateTimeOriginal) {
+    dateStr = this.toObject().exif.DateTimeOriginal
+      .replace(':','-')
+      .replace(':','-');
+  }
+
+  this.set('__date', new Date(dateStr));
+};
 
 PhotoSchema.pre('validate', function(next) {
   // if(!this.__date) {
