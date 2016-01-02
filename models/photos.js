@@ -11,7 +11,7 @@ PhotoSchema.methods.inferDate = function() {
   // this.set('__date', _.get(this.toObject(), 'exif.DateTimeOriginal', this.createdAt));
   let dateStr = this.createdAt;
   const obj = this.toObject();
-  if(obj.exif && obj.exif.DateTimeOriginal) {
+  if(obj.exif && obj.exif.exif && obj.exif.exif.DateTimeOriginal) {
     dateStr = obj.exif.DateTimeOriginal
       .replace(':','-')
       .replace(':','-');
