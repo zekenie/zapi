@@ -12,7 +12,7 @@ PhotoSchema.methods.inferDate = function() {
   let dateStr = this.createdAt;
   const obj = this.toObject();
   if(obj.exif && obj.exif.exif && obj.exif.exif.DateTimeOriginal) {
-    dateStr = obj.exif.DateTimeOriginal
+    dateStr = obj.exif.exif.DateTimeOriginal
       .replace(':','-')
       .replace(':','-');
   }
