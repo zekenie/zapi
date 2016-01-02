@@ -4,15 +4,18 @@ const mongoose = require('mongoose');
 const timeseriesPlugin = require('./timeseriesPlugin');
 
 const PhoneBatteriesSchema = new mongoose.Schema({
-  value: { type: Number },
   isPlugged: Boolean,
   level: { type: Number }
 }, { strict: false, collection: 'phoneBattery'});
 
+PhoneBatteriesSchema.methods.transformer = function() {
+  const doc = this.toObject();
+  doc.value = this.level;
+  return doc;
+};
 
 PhoneBatteriesSchema.pre('validate', function(next) {
   if(!this.__date) { this.__date = new Date(); }
-  if(!this.value) { this.value = this.level; }
   next();
 });
 
