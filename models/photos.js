@@ -21,9 +21,9 @@ PhotoSchema.methods.inferDate = function() {
 };
 
 PhotoSchema.pre('validate', function(next) {
-  // if(!this.__date) {
+  if(!this.__date) {
     this.inferDate();
-  // }
+  }
   next();
 });
 
