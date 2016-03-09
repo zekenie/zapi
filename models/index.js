@@ -14,3 +14,4 @@ module.exports = {
   JobRun: require('./jobRuns'),
   JobTouch: require('./jobTouches')
 };
+require('./macstats');
