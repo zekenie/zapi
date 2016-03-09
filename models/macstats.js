@@ -14,7 +14,7 @@ const cap = string => string.charAt(0).toUpperCase() + string.slice(1);
     value: { type: Number, required: true }
   });
 
-  timeseriesPlugin.add(schema, cap(name));
+  timeseriesPlugin.add(schema, name);
   
-  mongoose.model(cap(name), schema);
+  mongoose.model(name, schema);
 });
