@@ -12,7 +12,8 @@ require('./models');
 app.use(morgan('dev'));
 app.use(compression());
 app.use(function(req, res, next) {
-  if(req.get('Authentication') !== config.password) { return res.status(401).end(); }
+  const pass = req.get('Authentication') || req.query.Authentication;
+  if(pass !== config.password) { return res.status(401).end(); }
   next();
 });
 
