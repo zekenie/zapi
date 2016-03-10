@@ -32,7 +32,7 @@ const plugin = (schema) => {
 
   schema.statics.range = function(start, end) {
     const query = composeDateQuery(start, end);
-    return this.find(query).select('-_id -__v')
+    return this.find(query).select('-__v')
       .then(docs => {
         return Promise.map( docs, doc => {
           return doc.transformer();
