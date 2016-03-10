@@ -13,6 +13,16 @@ const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
 
+router.get('/:id', (req,res, next) => {
+  model.findById(req.params.id)
+    .then(doc => {
+      if(!doc) { throw 'not found'; }
+      res.set('Record', JSON.stringify(doc));
+      res.sendFile(doc.filePath);
+    })
+    .catch(next);
+});
+
 router.post('/',
   upload.single('photo'),
 
