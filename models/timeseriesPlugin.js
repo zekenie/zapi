@@ -26,7 +26,7 @@ const plugin = (schema, config) => {
 
   schema.statics.range = function(start, end) {
     const query = composeDateQuery(start, end);
-    return this.aggregate({ $match: query }).sample(5000)
+    return this.aggregate({ $match: query }).sample(5000).exec()
       .then(docs => {
         if(!config.transformer) { return docs; }
         return Promise.map(docs, config.transformer);
