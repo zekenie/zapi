@@ -17,32 +17,25 @@ const composeDateQuery = (start, end) => {
   return query;
 };
 
-const plugin = (schema) => {
+const plugin = (schema, config) => {
 
   schema.add({
     __date: { type: Date, required: true, index: true },
     dateApproximate: Boolean
   });
 
-  if(!schema.methods.transformer) {
-    schema.methods.transformer = function() {
-      return this.toObject();
-    };
-  }
-
   schema.statics.range = function(start, end) {
     const query = composeDateQuery(start, end);
-    return this.find(query).select('-__v')
+    return this.aggregate({ $match: query }).sample(5000)
       .then(docs => {
-        return Promise.map( docs, doc => {
-          return doc.transformer();
-        });
+        if(!config.transformer) { return docs; }
+        return Promise.map(docs, config.transformer);
       });
   };
 };
 
-exports.add = function(schema, collection, klass) {
-  schema.plugin(plugin);
+exports.add = function(schema, collection, klass, config) {
+  schema.plugin(plugin, config);
   process.nextTick(function() {
     collections[collection] = klass || mongoose.model(collection);
   });

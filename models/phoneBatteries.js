@@ -8,16 +8,16 @@ const PhoneBatteriesSchema = new mongoose.Schema({
   level: { type: Number }
 }, { strict: false, collection: 'phoneBattery'});
 
-PhoneBatteriesSchema.methods.transformer = function() {
-  const doc = this.toObject();
-  doc.value = this.level;
-  return doc;
-};
-
 PhoneBatteriesSchema.pre('validate', function(next) {
   if(!this.__date) { this.__date = new Date(); }
   next();
 });
 
 timeseriesPlugin.add(PhoneBatteriesSchema, 'PhoneBattery');
-module.exports = mongoose.model('PhoneBattery', PhoneBatteriesSchema);
+module.exports = mongoose.model('PhoneBattery', PhoneBatteriesSchema, null, {
+  transformer: function(doc) {
+    doc = doc.toObject();
+    doc.value = doc.level;
+    return doc;
+  }
+});
