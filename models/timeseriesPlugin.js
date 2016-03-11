@@ -18,7 +18,7 @@ const composeDateQuery = (start, end) => {
 };
 
 const plugin = (schema, config) => {
-
+  config = config || {};
   schema.add({
     __date: { type: Date, required: true, index: true },
     dateApproximate: Boolean
