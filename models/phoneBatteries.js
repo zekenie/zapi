@@ -16,7 +16,6 @@ PhoneBatteriesSchema.pre('validate', function(next) {
 timeseriesPlugin.add(PhoneBatteriesSchema, 'PhoneBattery');
 module.exports = mongoose.model('PhoneBattery', PhoneBatteriesSchema, null, {
   transformer: function(doc) {
-    doc = doc.toObject();
     doc.value = doc.level;
     return doc;
   }
