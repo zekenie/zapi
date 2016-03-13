@@ -1,6 +1,7 @@
 'use strict';
 
 const ResizeJob = require('../resizeJob');
+const mongoose = require('mongoose');
 
 class PhotoResize extends ResizeJob{
   constructor() {
@@ -8,6 +9,7 @@ class PhotoResize extends ResizeJob{
     this.GROUP = 'photos';
     this.TITLE = 'resize';
     this.TABLE = 'Photo';
+    this.model = mongoose.model(this.TABLE);
   }
 }
 
