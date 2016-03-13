@@ -2,7 +2,7 @@
 
 const ResizeJob = require('../resizeJob');
 
-class ScreenshotResize {
+class ScreenshotResize extends ResizeJob {
   constructor() {
     super()
     this.GROUP = 'screenshots';

@@ -2,7 +2,7 @@
 
 const ResizeJob = require('../resizeJob');
 
-class PhotoResize {
+class PhotoResize extends ResizeJob{
   constructor() {
     super()
     this.GROUP = 'photos';
