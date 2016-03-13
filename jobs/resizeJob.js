@@ -7,7 +7,7 @@ const easyimg = require('easyimage');
 class ResizeJob extends Job {
 
   constructor() {
-    super({hasThumbnail: {$neq: true}});
+    super({hasThumbnail: {$ne: true}});
   }
 
   find() {
