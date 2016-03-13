@@ -11,7 +11,7 @@ class ResizeJob extends Job {
   }
 
   find() {
-    return this.model.find(this.query).limit(1);
+    return this.model.find(this.query).limit(12);
   }
 
   getThumbnailPath(path) {
