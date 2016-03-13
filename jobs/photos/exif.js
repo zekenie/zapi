@@ -15,7 +15,7 @@ class ExifJob extends Job {
   }
 
   find() {
-    console.log('querying docs to update', this.query);
+    // console.log('querying docs to update', this.query);
     return model.find(this.query).limit(300);
   }
 

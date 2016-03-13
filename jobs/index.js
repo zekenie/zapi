@@ -33,7 +33,7 @@ agenda.on('ready', function() {
   console.log('job system ready');
   // agenda.every('3 minutes', 'grab dates from screenshots');
   agenda.every('3 minutes', 'pull exif from photos');
-  agenda.every('2 minutes', 'resize photos');
-  agenda.every('2 minutes', 'resize screenshots');
+  agenda.every('3 minutes', 'resize photos');
+  agenda.every('3 minutes', 'resize screenshots');
   agenda.start();
 });
