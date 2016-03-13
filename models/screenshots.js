@@ -19,6 +19,7 @@ const pullDateFromFilename = function() {
 };
 
 ScreenshotSchema.pre('validate', function(next) {
+  if(this.__date) { return next(); }
   this.set('__date', pullDateFromFilename.call(this));
   next();
 });
