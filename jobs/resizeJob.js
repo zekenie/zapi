@@ -17,7 +17,7 @@ class ResizeJob extends Job {
   processRecord(record) {
     return easyimg.resize({
       src: record.filePath,
-      dst: record.thumbFilePath
+      dst: record.thumbFilePath,
       width: 450
     });
   }
