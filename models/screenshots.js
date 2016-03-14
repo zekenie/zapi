@@ -24,6 +24,7 @@ ScreenshotSchema.pre('validate', function(next) {
 });
 
 ScreenshotSchema.plugin(require('./filePlugin'), { checksum: true, filetype: '.png' });
+ScreenshotSchema.plugin(require('./thumbnailPlugin'));
 timeseriesPlugin.add(ScreenshotSchema, 'Screenshot');
 
 module.exports = mongoose.model('Screenshot', ScreenshotSchema);

@@ -14,22 +14,12 @@ class ResizeJob extends Job {
     return this.model.find(this.query).limit(3);
   }
 
-  getThumbnailPath(path) {
-    const components = path.split('/');
-    components[components.length - 1] = 'thumb' + components[components.length - 1];
-    return components.join('/');
-  }
-
   processRecord(record) {
     return easyimg.resize({
       src: record.filePath,
-      dst: this.getThumbnailPath(record.filePath),
-      width: 500
-    })
-      .then( () => {
-        record.hasThumbnail = true;
-        return record.save();
-      });
+      dst: record.thumbFilePath
+      width: 450
+    });
   }
 }
 

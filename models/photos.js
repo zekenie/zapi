@@ -30,6 +30,7 @@ PhotoSchema.pre('validate', function(next) {
 });
 
 PhotoSchema.plugin(require('./filePlugin'), { checksum: true, filetype: '.jpg' });
+PhotoSchema.plugin(require('./thumbnailPlugin'));
 timeseriesPlugin.add(PhotoSchema, 'Photo');
 
 module.exports = mongoose.model('Photo', PhotoSchema);

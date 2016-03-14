@@ -16,7 +16,13 @@ router.get('/:id', (req,res, next) => {
     .then(doc => {
       if(!doc) { throw 'not found'; }
       res.set('Record', JSON.stringify(doc));
-      res.sendFile(doc.filePath);
+      let path;
+      if(req.query.thumb && doc.thumbFilePath) {
+        path = doc.thumbFilePath
+      } else {
+        path = doc.filePath;
+      }
+      res.sendFile(path);
     })
     .catch(next);
 });
