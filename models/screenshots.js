@@ -3,7 +3,6 @@
 const timeseriesPlugin = require('./timeseriesPlugin');
 const mongoose = require('mongoose');
 const ScreenshotSchema = new mongoose.Schema({
-  hasThumbnail: Boolean,
   filename: { type: String }
 }, {
   strict: false,

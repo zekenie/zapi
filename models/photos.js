@@ -3,8 +3,7 @@ const _ = require('lodash');
 const mongoose = require('mongoose');
 const timeseriesPlugin = require('./timeseriesPlugin');
 const PhotoSchema = new mongoose.Schema({
-  googleUploadComplete: Boolean,
-  hasThumbnail: Boolean
+  googleUploadComplete: Boolean
 }, {
   strict: false,
   timestamps: true
