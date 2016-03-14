@@ -34,6 +34,6 @@ agenda.on('ready', function() {
   // agenda.every('3 minutes', 'grab dates from screenshots');
   agenda.every('3 minutes', 'pull exif from photos');
   agenda.every('3 minutes', 'resize photos');
-  agenda.every('3 minutes', 'resize screenshots');
+  agenda.every('4 minutes', 'resize screenshots');
   agenda.start();
 });
