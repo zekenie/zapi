@@ -19,7 +19,9 @@ class ResizeJob extends Job {
       src: record.filePath,
       dst: record.thumbFilePath,
       width: 450
-    });
+    })
+    .then( () => record )
+    .catch( () => record );
   }
 }
 
