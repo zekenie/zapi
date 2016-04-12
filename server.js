@@ -11,6 +11,9 @@ https.createServer(config.https, app).listen(config.port);
 require('./models');
 app.use(morgan('dev'));
 app.use(compression());
+
+app.use('/webhooks', require('./webhooks'));
+
 app.use(function(req, res, next) {
   const pass = req.get('Authentication') || req.query.Authentication;
   if(pass !== config.password) { return res.status(401).end(); }

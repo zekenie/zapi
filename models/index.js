@@ -12,6 +12,7 @@ module.exports = {
   GoogleSearch: require('./googleSearches'),
   Screenshot: require('./screenshots'),
   JobRun: require('./jobRuns'),
-  JobTouch: require('./jobTouches')
+  JobTouch: require('./jobTouches'),
+  money: require('./money')
 };
 require('./macstats');
