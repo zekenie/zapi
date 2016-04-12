@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 router.use(bodyParser.json({ limit: '300kb' }));
 router.post('/plaid', (req, res, next) => {
