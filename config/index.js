@@ -12,7 +12,6 @@ module.exports = {
   },
   plaid: {
     clientId: process.env.PLAID_CLIENT_ID,
-    secret: process.env.PLAID_SECRET,
-    accessToken: process.env.PLAID_ACCESS_TOKEN
+    secret: process.env.PLAID_SECRET
   }
 };
