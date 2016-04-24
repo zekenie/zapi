@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
-const config = require('../config');
+const config = require('../../config');
 const plaid = require('plaid');
 const plaidClient = new plaid.Client(config.plaid.clientId, config.plaid.secret, plaid.environments.production);
 const PlaidWebhookSchema = new mongoose.Schema({}, {
