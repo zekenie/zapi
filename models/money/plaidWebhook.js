@@ -17,6 +17,7 @@ const transformIds = arr => arr.map( obj => {
 
 PlaidWebhookSchema.methods.scrapeDetails = function() {
   return new Promise((resolve, reject) => {
+    console.log('sending request with', this.access_token);
     plaidClient.getConnectUser(this.access_token, (err, response) => {
       if(err) { return reject(err); }
       console.log('recieved user info')
