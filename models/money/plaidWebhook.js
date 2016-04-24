@@ -29,7 +29,14 @@ PlaidWebhookSchema.methods.scrapeDetails = function() {
         PlaidTransaction: response.transactions
       });
     });
-  });
+  })
+  .then(docTypes => {
+      console.log('processed transactions', docTypes);
+      Object.keys(docTypes).forEach(key => {
+        docTypes[key] = docTypes[key].map( docObj => mongoose.model(key).findOrCreate({ plaid_id: docObj.plaid_id }, docObj) )
+      })
+      return Promise.props(docTypes);
+    });
 };
 
 module.exports = mongoose.model('PlaidWebhook', PlaidWebhookSchema);

@@ -12,13 +12,6 @@ router.post('/plaid', (req, res, next) => {
     .catch(next)
     .then( () => res.status(201).end() )
     .then( doc => doc.scrapeDetails())
-    .then(docTypes => {
-      console.log('processed transactions', docTypes);
-      Object.keys(docTypes).forEach(key => {
-        docTypes[key] = docTypes[key].map( docObj => mongoose.model(key).findOrCreate({ plaid_id: docObj.plaid_id }, docObj) )
-      })
-      return Promise.props(docTypes);
-    })
     .catch( err => console.error(err,err.stack) );
 });
 
