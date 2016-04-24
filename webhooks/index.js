@@ -18,11 +18,13 @@ const transformIds = arr => arr.map( obj => {
 router.use(bodyParser.json({ limit: '300kb' }));
 router.post('/plaid', (req, res, next) => {
   mongoose.model('PlaidWebhook').create(req.body)
+    .catch(next)
     .then( () => res.status(201).end() )
     .then( doc => {
       return new Promise(function(resolve, reject) {
         plaidClient.getConnectUser(doc.access_token, function(err, response) {
           if(err) { return reject(err); }
+          console.log('recieved user info')
           response.transactions = transformIds(response.transactions);
           response.accounts = transformIds(response.accounts);
           resolve({
@@ -33,12 +35,13 @@ router.post('/plaid', (req, res, next) => {
       });
     })
     .then((docTypes) => {
+      console.log('processed transactions', docTypes);
       Object.keys(docTypes).forEach(key => {
         docTypes[key] = docTypes[key].map( docObj => mongoose.model(key).findOrCreate({ plaid_id: docObj.plaid_id }, docObj) )
       })
       return Promise.props(docTypes);
     })
-    .catch(next);
+    .catch( err => console.error(err,err.stack) );
 });
 
 module.exports = router;
