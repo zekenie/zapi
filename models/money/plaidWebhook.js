@@ -4,7 +4,9 @@ const Promise = require('bluebird');
 const config = require('../../config');
 const plaid = require('plaid');
 const plaidClient = new plaid.Client(config.plaid.clientId, config.plaid.secret, plaid.environments.production);
-const PlaidWebhookSchema = new mongoose.Schema({}, {
+const PlaidWebhookSchema = new mongoose.Schema({
+  access_token: String
+}, {
   strict: false,
   timestamps: true
 });
@@ -16,10 +18,8 @@ const transformIds = arr => arr.map( obj => {
 });
 
 PlaidWebhookSchema.methods.scrapeDetails = function() {
-  var self = this;
   return new Promise((resolve, reject) => {
-    console.log('sending request with', self.access_token);
-    plaidClient.getConnectUser(self.access_token, (err, response) => {
+    plaidClient.getConnectUser(this.access_token, (err, response) => {
       if(err) { return reject(err); }
       console.log('recieved user info')
       response.transactions = transformIds(response.transactions);
