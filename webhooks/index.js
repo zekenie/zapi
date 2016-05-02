@@ -10,7 +10,7 @@ router.use(bodyParser.json({ limit: '300kb' }));
 router.post('/plaid', (req, res, next) => {
   mongoose.model('PlaidWebhook').create(req.body)
     .catch(next)
-    .then( () => res.status(201).end() )
+    .tap( () => res.status(201).end() )
     .then( doc => doc.scrapeDetails())
     .catch( err => console.error(err,err.stack) );
 });

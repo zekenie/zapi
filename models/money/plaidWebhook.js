@@ -20,7 +20,7 @@ const transformIds = arr => arr.map( obj => {
 PlaidWebhookSchema.methods.scrapeDetails = function() {
   return new Promise((resolve, reject) => {
     plaidClient.getConnectUser(this.access_token, {
-      gte: '5 days ago',
+      gte: '15 days ago',
     }, (err, response) => {
       if(err) { return reject(err); }
       response.transactions = transformIds(response.transactions);
