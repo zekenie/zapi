@@ -21,7 +21,7 @@ router.use((req, res, next) => {
         });
       })
       .then(() => console.log('logged HUGE request'))
-      .then(() => res.send(200));
+      .then(() => res.send(200))
       .catch(next);
   }
   next();
