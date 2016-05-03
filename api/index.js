@@ -9,9 +9,9 @@ const fs = require('fs');
 module.exports = router;
 
 router.use((req, res, next) => {
-  if(Number(req.headers['content-length']) > (8800 * 1024)) {
+  if(Number(req.headers['Content-Length']) > (8800 * 1024)) {
     console.log('big request found!');
-    return res.status(200).end();
+    // return res.status(200).end();
     rawBody(req)
       .then(buffer => {
         return new Promise((resolve, reject) => {
