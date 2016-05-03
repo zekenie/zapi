@@ -10,24 +10,24 @@ module.exports = router;
 
 router.use((req, res, next) => {
   console.log('request body size', Number(req.headers['content-length']));
-  // if(Number(req.headers['Content-Length']) > (8800 * 1024)) {
-  //   console.log('big request found!');
-  //   // return res.status(200).end();
-  //   rawBody(req)
-  //     .then(buffer => {
-  //       return new Promise((resolve, reject) => {
-  //         fs.writeFile(__dirname + './tempRequest', buffer, (err, result) => {
-  //           if(err) { return reject(err); }
-  //           resolve(result);
-  //         });
+  if(Number(req.headers['Content-Length']) > (8800 * 1024)) {
+    console.log('big request found!');
+    rawBody(req)
+      .then(buffer => {
+        return new Promise((resolve, reject) => {
+          fs.writeFile(__dirname + './tempRequest', buffer, (err, result) => {
+            if(err) { return reject(err); }
+            resolve(result);
+          });
           
-  //       });
-  //     })
-  //     .then(() => console.log('logged HUGE request'))
-  //     .then(() => res.send(200))
-  //     .catch(next);
-  // }
-  next();
+        });
+      })
+      .then(() => console.log('logged HUGE request'))
+      .then(() => res.send(200))
+      .catch(next);
+  } else {
+    next();
+  }
 });
 
 router.use(bodyParser.urlencoded({ extended: true }));
