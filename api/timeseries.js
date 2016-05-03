@@ -5,7 +5,9 @@ const bluebird = require('bluebird');
 const router = express.Router();
 const timeseriesPlugin = require('../models/timeseriesPlugin');
 
-const bulkAdd = (collection, array) => bluebird.map(array, el => mongoose.model(collection).create(el) );
+const bulkAdd = (collection, array) => bluebird.map(array, el => mongoose.model(collection).create(el).then(function() {}), {
+  concurrency: 150
+});
 
 router.get('/', (req, res, next) => {
   try {

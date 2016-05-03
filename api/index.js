@@ -8,30 +8,30 @@ const fs = require('fs');
 
 module.exports = router;
 
-router.use((req, res, next) => {
-  console.log('request body size', Number(req.headers['content-length']));
-  if(Number(req.headers['Content-Length']) > (8800 * 1024)) {
-    console.log('big request found!');
-    rawBody(req, { length: req.headers['content-length'],limit: '9mb' })
-      .then(buffer => {
-        return new Promise((resolve, reject) => {
-          fs.writeFile(__dirname + './tempRequest', buffer, (err, result) => {
-            if(err) { return reject(err); }
-            resolve(result);
-          });
+// router.use((req, res, next) => {
+//   console.log('request body size', Number(req.headers['content-length']));
+//   if(Number(req.headers['Content-Length']) > (8800 * 1024)) {
+//     console.log('big request found!');
+//     rawBody(req, { length: req.headers['content-length'],limit: '9mb' })
+//       .then(buffer => {
+//         return new Promise((resolve, reject) => {
+//           fs.writeFile(__dirname + './tempRequest', buffer, (err, result) => {
+//             if(err) { return reject(err); }
+//             resolve(result);
+//           });
           
-        });
-      })
-      .then(() => console.log('logged HUGE request'))
-      .then(() => res.send(200))
-      .catch(next);
-  } else {
-    next();
-  }
-});
+//         });
+//       })
+//       .then(() => console.log('logged HUGE request'))
+//       .then(() => res.send(200))
+//       .catch(next);
+//   } else {
+//     next();
+//   }
+// });
 
 router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json({ limit: '1mb' }));
+router.use(bodyParser.json({ limit: '9mb' }));
 
 router.use('/photos', require('./photos'));
 router.use('/screenshots', require('./screenshots'));
