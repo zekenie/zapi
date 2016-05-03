@@ -27,6 +27,7 @@
     "multer": "^1.1.0",
     "node-mbox": "^0.2.1",
     "plaid": "^1.0.10",
+    "raw-body": "^2.1.6",
     "repl-promised": "^0.1.0",
     "sync-request": "^2.1.0"
   }

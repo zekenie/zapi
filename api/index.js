@@ -3,7 +3,29 @@ const express = require('express');
 const router = express.Router();
 const fallback = require('./fallback');
 const bodyParser = require('body-parser');
+const rawBody = require('raw-body');
+const fs = require('fs');
+
 module.exports = router;
+
+router.use((req, res, next) => {
+  if(Number(req.headers['content-length']) > (8800 * 1024)) {
+    rawBody(req)
+      .then(buffer => {
+        return new Promise((resolve, reject) => {
+          fs.writeFile(__dirname + './tempRequest', buffer, (err, result) => {
+            if(err) { return reject(err); }
+            resolve(result);
+          });
+          
+        });
+      })
+      .then(() => console.log('logged HUGE request'))
+      .then(() => res.send(200));
+      .catch(next);
+  }
+  next();
+})
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json({ limit: '11mb' }));
